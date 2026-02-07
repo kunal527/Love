@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Pratibha ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.card{
+  background:white;
+  width:92%;
+  max-width:390px;
+  padding:22px;
+  border-radius:25px;
+  text-align:center;
+  box-shadow:0 25px 45px rgba(0,0,0,0.3);
+}
+
+.rose{
+  font-size:90px;
+  cursor:pointer;
+  animation:float 2s infinite alternate;
+}
+
+@keyframes float{
+  to{transform:translateY(-15px)}
+}
+
+.hidden{display:none;}
+
+.photo-box{
+  position:relative;
+  margin-top:12px;
+}
+
+.photo-box img{
+  width:100%;
+  height:360px;
+  object-fit:cover;
+  border-radius:18px;
+  animation:fade 2.5s ease-in-out;
+}
+
+@keyframes fade{
+  from{opacity:0.4}
+  to{opacity:1}
+}
+
+.name-glow{
+  position:absolute;
+  bottom:15px;
+  width:100%;
+  text-align:center;
+  font-size:22px;
+  font-weight:600;
+  color:white;
+  text-shadow:0 0 10px #ff4d6d, 0 0 20px #ff4d6d;
+}
+
+.tag{
+  position:absolute;
+  top:15px;
+  left:15px;
+  background:rgba(255,255,255,0.85);
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:13px;
+  color:#e6005c;
+  font-weight:500;
+}
+
+p{
+  color:#444;
+  font-size:15px;
+  line-height:1.6;
+}
+
+button{
+  padding:12px 22px;
+  border:none;
+  border-radius:30px;
+  font-size:15px;
+  cursor:pointer;
+  margin:8px;
+}
+
+.yes{background:#ff4d6d;color:white;}
+.no{background:#ccc;}
+
+.fire{
+  position:fixed;
+  bottom:0;
+  font-size:20px;
+  animation:boom 2s forwards;
+}
+
+@keyframes boom{
+  to{transform:translateY(-120vh) scale(2);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+
+  <div class="rose" onclick="openRose()">🌹</div>
+  <h3 id="tap">Tap the rose</h3>
+
+  <p id="msg" class="hidden">
+    This rose is for the girl  
+    who makes everything feel softer 🌸
+  </p>
+
+  <!-- HER PHOTO SLIDESHOW -->
+  <div class="photo-box hidden" id="photoBox">
+    <span class="tag">My Rose 🌹</span>
+    <img id="slide" src="1.jpg">
+    <div class="name-glow">Pratibha ✨</div>
+  </div>
+
+  <p id="question" class="hidden">
+    Will you be my Valentine? 💍❤️
+  </p>
+
+  <div id="buttons" class="hidden">
+    <button class="yes" onclick="yes()">YES 💖</button>
+    <button class="no" onmouseover="moveNo()">NO 🙈</button>
+  </div>
+
+</div>
+
+<script>
+let slides=["1.jpg","2.jpg","3.jpg"];
+let i=0;
+
+function openRose(){
+  document.getElementById("bgm").play();
+  document.getElementById("msg").classList.remove("hidden");
+  document.getElementById("photoBox").classList.remove("hidden");
+  document.getElementById("question").classList.remove("hidden");
+  document.getElementById("buttons").classList.remove("hidden");
+  document.getElementById("tap").style.display="none";
+
+  setInterval(()=>{
+    i=(i+1)%slides.length;
+    document.getElementById("slide").src=slides[i];
+  },3000);
+}
+
+function yes(){
+  for(let i=0;i<30;i++){
+    let f=document.createElement("div");
+    f.className="fire";
+    f.innerHTML="❤️";
+    f.style.left=Math.random()*100+"vw";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),2000);
+  }
+  document.body.innerHTML=`
+  <div style="padding:35px;text-align:center;font-family:Poppins">
+    <h1>For You, Pratibha 💌</h1>
+    <p>
+    You are my favourite view,  
+    my calm place,  
+    and the person my heart chooses — every time ❤️  
+    </p>
+    <h2>Forever Yours 🌹</h2>
+  </div>`;
+}
+
+function moveNo(){
+  let b=document.querySelector(".no");
+  b.style.position="absolute";
+  b.style.left=Math.random()*70+"%";
+  b.style.top=Math.random()*70+"%";
+}
+</script>
+
+</body>
+</html>
